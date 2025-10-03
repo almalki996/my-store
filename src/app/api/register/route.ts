@@ -15,6 +15,12 @@ export async function POST(req: NextRequest) {
         if (result.success) {
             return NextResponse.json({ message: "تم إنشاء الحساب بنجاح" }, { status: 201 });
         } else {
+
+             //  v--v   أضف هذا السطر لطباعة الخطأ   v--v
+            console.error("DETAILED ODOO ERROR:", result.error); 
+            //  ^--^                             ^--^
+
+
             // Handle specific errors based on the code from createUser
             if (result.error === "DUPLICATE_EMAIL") {
                 return NextResponse.json({ message: "هذا البريد الإلكتروني مسجل لدينا بالفعل." }, { status: 409 }); // 409 Conflict

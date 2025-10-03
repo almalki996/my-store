@@ -228,7 +228,7 @@ export const authenticateUser = async (email: string, password: string) => {
 };
 
 
-// src/lib/odoo.ts
+
 export const createUser = async (name: string, email: string, password: string) => {
     try {
         const portalGroupId = await odooJsonRpc('ir.model.data', 'search_read',
@@ -255,9 +255,9 @@ export const createUser = async (name: string, email: string, password: string) 
     } catch (error) {
         console.error("Odoo user creation error:", error);
 
-        //  v--v   هذا هو الشرط الجديد والأكثر دقة   v--v
-        const errorMessage = JSON.stringify(error); // Convert error object to string for reliable searching
-        if (errorMessage.includes('res_users_login_key') || errorMessage.includes('duplicate key value violates unique constraint')) {
+        //  v--v   هذا هو الشرط النهائي والصحيح   v--v
+        const errorMessage = JSON.stringify(error);
+        if (errorMessage.includes("لا يمكن لمستخدمين استخدام نفس بيانات الدخول")) {
             return { success: false, error: "DUPLICATE_EMAIL" };
         }
         // ^--^            نهاية التعديل           ^--^
