@@ -231,15 +231,16 @@ export const authenticateUser = async (email: string, password: string) => {
 
 export const createUser = async (name: string, email: string, password: string) => {
     try {
-        const portalGroupId = await odooJsonRpc('ir.model.data', 'search_read',
+        // This part is correct and remains the same
+        const portalGroupIdData = await odooJsonRpc('ir.model.data', 'search_read',
             [[['module', '=', 'base'], ['name', '=', 'group_portal']]],
             { fields: ['res_id'] }
         ) as { res_id: number }[];
 
-        if (!portalGroupId || portalGroupId.length === 0) {
+        if (!portalGroupIdData || portalGroupIdData.length === 0) {
             throw new Error("Portal user group not found in Odoo.");
         }
-        const groupId = portalGroupId[0].res_id;
+        const groupId = portalGroupIdData[0].res_id;
 
         const userId = await odooJsonRpc('res.users', 'create', [{
             name: name,
@@ -252,15 +253,16 @@ export const createUser = async (name: string, email: string, password: string) 
         if (!userId) { throw new Error("User creation failed."); }
         return { success: true, userId };
 
-    } catch (error) {
-        console.error("Odoo user creation error:", error);
+    } catch (error: any) { // <-- 1. Specify type as 'any' to inspect it
+        console.error("Full Odoo user creation error object:", error);
 
-        //  v--v   هذا هو الشرط النهائي والصحيح   v--v
-        const errorMessage = JSON.stringify(error);
-        if (errorMessage.includes("لا يمكن لمستخدمين استخدام نفس بيانات الدخول")) {
+        //  v--v   This is the final and correct logic   v--v
+        // The error we catch here is the one thrown from odooJsonRpc,
+        // so we inspect its 'message' property.
+        if (error.message && error.message.includes("لا يمكن لمستخدمين استخدام نفس بيانات الدخول")) {
             return { success: false, error: "DUPLICATE_EMAIL" };
         }
-        // ^--^            نهاية التعديل           ^--^
+        // ^--^            End of the fix           ^--^
 
         return { success: false, error: "USER_CREATION_FAILED" };
     }

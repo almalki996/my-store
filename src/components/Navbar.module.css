@@ -1,335 +1,160 @@
-/* Navbar Styles */
+/* src/components/Navbar.module.css */
 .header {
-  background-color: white;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 40;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
 }
-
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    height: 5rem;
 }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: inherit;
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
-
+.logoLink {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
 .logoText {
-  font-weight: bold;
-  font-size: 1.125rem;
-  color: #1f2937;
-  display: none;
-}
-
-.nav {
-  display: none;
-  align-items: center;
-  gap: 2rem;
-}
-
-.navLink {
-  color: #6b7280;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.navLink:hover {
-  color: #4f46e5;
-}
-
-.dropdown {
-  position: relative;
-  padding: 0.5rem 0;
-}
-
-.dropdownTrigger {
-  color: #6b7280;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.dropdownTrigger:hover {
-  color: #4f46e5;
-}
-
-.dropdownMenu {
-  position: absolute;
-  display: none;
-  background-color: white;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border-radius: 0.375rem;
-  padding: 0.5rem 0;
-  width: 12rem;
-  border: 1px solid #f3f4f6;
-  z-index: 50;
-}
-
-.dropdown:hover .dropdownMenu {
-  display: block;
-}
-
-.dropdownItem {
-  display: block;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  color: #374151;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.dropdownItem:hover {
-  background-color: #eef2ff;
-}
-
-.emptyMessage {
-  color: #9ca3af;
-}
-
-.rightActions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.searchWrapper {
-  display: none;
-}
-
-.authActions {
-  display: none;
-  align-items: center;
-  gap: 1rem;
-}
-
-.userName {
-  font-size: 0.875rem;
-  color: #374151;
-}
-
-.logoutBtn {
-  font-size: 0.875rem;
-  color: #ef4444;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: text-decoration 0.3s;
-}
-
-.logoutBtn:hover {
-  text-decoration: underline;
-}
-
-.loginBtn {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.loginBtn:hover {
-  color: #4f46e5;
-}
-
-.registerBtn {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: white;
-  background-color: #4f46e5;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.registerBtn:hover {
-  background-color: #4338ca;
-}
-
-.cartBtn {
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.cartIcon {
-  height: 1.75rem;
-  width: 1.75rem;
-  color: #6b7280;
-}
-
-.cartBadge {
-  position: absolute;
-  top: -0.5rem;
-  right: -0.5rem;
-  background-color: #ef4444;
-  color: white;
-  font-size: 0.75rem;
-  border-radius: 50%;
-  height: 1.25rem;
-  width: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menuBtn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.menuIcon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.mobileMenu {
-  background-color: white;
-  border-top: 1px solid #e5e7eb;
-}
-
-.mobileNav {
-  padding: 0.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.mobileNavLink {
-  display: block;
-  padding: 0.75rem;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #374151;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.mobileNavLink:hover {
-  background-color: #f3f4f6;
-}
-
-.mobileActions {
-  padding-top: 1rem;
-  padding-bottom: 0.75rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.mobileSearch {
-  padding: 0 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.mobileAuth {
-  padding: 0 1.25rem;
-}
-
-.mobileUserName {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #1f2937;
-}
-
-.mobileLogoutBtn {
-  margin-top: 0.25rem;
-  display: block;
-  width: 100%;
-  text-align: right;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #ef4444;
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.mobileLogoutBtn:hover {
-  background-color: #f3f4f6;
-}
-
-.mobileAuthButtons {
-  padding: 0 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.mobileAuthBtn {
-  display: block;
-  text-align: center;
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.mobileLoginBtn {
-  color: #374151;
-}
-
-.mobileLoginBtn:hover {
-  background-color: #f3f4f6;
-}
-
-.mobileRegisterBtn {
-  color: white;
-  background-color: #4f46e5;
-}
-
-.mobileRegisterBtn:hover {
-  background-color: #4338ca;
-}
-
-/* Media Queries */
-@media (min-width: 640px) {
-  .logoText {
-    display: block;
-  }
-  
-  .searchWrapper {
-    display: block;
-  }
-  
-  .mobileNav {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .nav {
-    display: flex;
-  }
-  
-  .authActions {
-    display: flex;
-  }
-  
-  .menuBtn {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #1f2937;
     display: none;
-  }
+}
+.desktopNav {
+    display: none;
+}
+.navLink {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    transition: color 0.2s;
+    text-decoration: none;
+    position: relative;
+}
+.navLink::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4338ca;
+    transition: width 0.3s;
+}
+.navLink:hover::after {
+    width: 100%;
+}
+.dropdownContainer {
+    position: relative;
+    padding: 0.5rem 0;
+}
+.dropdownTrigger {
+    cursor: pointer;
+}
+.dropdownMenu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    border-radius: 0.375rem;
+    padding: 0.5rem 0;
+    width: 12rem;
+    border: 1px solid #f3f4f6;
+    z-index: 50;
+    right: 0;
+}
+.dropdownContainer:hover .dropdownMenu {
+    display: block;
+}
+.dropdownLink {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+}
+.dropdownLink:hover {
+    background-color: #f9fafb;
+}
+.actionsContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.authContainer {
+    display: none; /* Hidden on mobile */
+}
+.authLink {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+.authLink:hover {
+    color: #4f46e5;
+}
+.registerLink {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: white;
+    background-color: #4f46e5;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.registerLink:hover {
+    background-color: #4338ca;
+}
+.cartButton {
+    position: relative;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.cartButton:hover {
+    background-color: #f3f4f6;
+}
+.cartBadge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mobileMenuButton {
+    display: block;
+}
+/* Responsive adjustments */
+@media (min-width: 640px) { /* sm breakpoint */
+    .logoText { display: block; }
+}
+@media (min-width: 768px) { /* md breakpoint */
+    .desktopNav { display: flex; align-items: center; gap: 1.5rem; }
+    .authContainer { display: flex; align-items: center; gap: 1rem; }
+    .mobileMenuButton { display: none; }
 }
