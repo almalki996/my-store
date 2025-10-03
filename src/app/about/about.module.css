@@ -1,0 +1,44 @@
+/* About Page Module CSS */
+
+.container {
+  background-color: var(--color-white);
+  padding: 3rem 0;
+}
+
+.innerContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--color-gray-900);
+  margin-bottom: 2rem;
+}
+
+.content {
+  max-width: 56rem;
+  margin: 0 auto;
+  color: var(--color-gray-700);
+  line-height: 1.75;
+  font-size: 1.125rem;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-gray-900);
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}

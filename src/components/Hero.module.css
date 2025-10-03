@@ -1,0 +1,53 @@
+/* Hero Styles */
+.hero {
+  background-color: #007BFF; /* brand-blue color */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #c7d2fe;
+  margin-bottom: 2rem;
+}
+
+.ctaButton {
+  background-color: white;
+  color: #4338ca;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #f3f4f6;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.75rem;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+  }
+}

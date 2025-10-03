@@ -1,0 +1,24 @@
+/* Product Detail Page Module CSS */
+
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.errorMessage {
+  font-size: 1.5rem;
+  color: var(--color-gray-600);
+}
+
+.main {
+  background-color: var(--color-white);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}

@@ -1,0 +1,35 @@
+/* Searchbar Styles */
+.searchForm {
+  position: relative;
+}
+
+.searchInput {
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  width: 12rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.searchInput:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.searchBtn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.searchIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+}

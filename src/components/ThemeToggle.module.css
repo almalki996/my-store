@@ -1,0 +1,73 @@
+/* ThemeToggle Module CSS */
+
+.placeholder {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--color-gray-200);
+  border-radius: var(--border-radius-md);
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.toggleBtn:hover {
+  background-color: var(--color-gray-100);
+  border-color: var(--color-primary);
+}
+
+.toggleBtn:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: all 0.3s ease;
+  position: absolute;
+}
+
+.sunIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.moonIcon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.8);
+}
+
+/* Dark theme styles */
+:global([data-theme="dark"]) .sunIcon {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0.8);
+}
+
+:global([data-theme="dark"]) .moonIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+:global([data-theme="dark"]) .toggleBtn {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+:global([data-theme="dark"]) .toggleBtn:hover {
+  background-color: var(--color-gray-800);
+  border-color: var(--color-primary);
+}

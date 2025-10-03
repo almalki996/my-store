@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# متجر ينابع الحلول
 
-## Getting Started
+هذا مشروع متجر إلكتروني مبني باستخدام [Next.js](https://nextjs.org) و TypeScript.
 
-First, run the development server:
+## التغييرات المهمة
+
+تم إزالة **Tailwind CSS** بالكامل من المشروع واستبداله بـ **CSS Modules** لمزيد من التحكم في التصميم:
+
+### ما تم حذفه:
+- ❌ حزمة `tailwindcss`
+- ❌ حزمة `@tailwindcss/postcss`
+- ❌ ملف `tailwind.config.ts`
+- ❌ ملف `postcss.config.mjs`
+- ❌ جميع Tailwind classes من الملفات
+
+### ما تم إضافته:
+- ✅ CSS Modules لكل مكون
+- ✅ أنماط CSS مخصصة ومرنة
+- ✅ دعم كامل لـ Responsive Design
+- ✅ Dark Mode support (محافظ عليه)
+
+## هيكل المشروع
+
+```
+src/
+  components/
+    ├── Navbar.tsx + Navbar.module.css
+    ├── Cart.tsx + Cart.module.css
+    ├── Hero.tsx + Hero.module.css
+    ├── Footer.tsx + Footer.module.css
+    ├── Searchbar.tsx + Searchbar.module.css
+    ├── ThemeToggle.tsx + ThemeToggle.module.css
+    ├── WhatsAppButton.tsx + WhatsAppButton.module.css
+    └── ProductCardSkeleton.tsx + ProductCardSkeleton.module.css
+  app/
+    └── search/
+        ├── page.tsx + page.module.css
+        └── loading.tsx + loading.module.css
+```
+
+## البدء
+
+أولاً، قم بتشغيل خادم التطوير:
 
 ```bash
 npm run dev
-# or
+# أو
 yarn dev
-# or
+# أو
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+افتح [http://localhost:3000](http://localhost:3000) في المتصفح لرؤية النتيجة.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## المميزات
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🛒 سلة مشتريات تفاعلية
+- 🔍 البحث في المنتجات
+- 🌙 وضع ليلي/نهاري
+- 📱 تصميم متجاوب
+- 🎨 CSS Modules للتحكم الكامل في التصميم
+- 🔐 نظام المصادقة
+- 📧 تواصل عبر WhatsApp
 
-## Learn More
+## تخصيص التصميم
 
-To learn more about Next.js, take a look at the following resources:
+الآن يمكنك بسهولة تخصيص التصميم من خلال:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **تعديل ملفات CSS Modules** الموجودة في نفس مجلد كل مكون
+2. **إضافة أنماط جديدة** في `src/app/globals.css`
+3. **استخدام متغيرات CSS** المخصصة
+4. **إنشاء مكونات جديدة** مع ملفات CSS منفصلة
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## متغيرات اللون الأساسية
 
-## Deploy on Vercel
+```css
+:root {
+  --brand-blue: #007BFF;
+  --brand-yellow: #FFC107;
+  --brand-green: #8BC34A;
+  --dark-text: #1F2937;
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## التطوير المستقبلي
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+مع إزالة Tailwind، أصبح لديك حرية كاملة في:
+- إنشاء نظام ألوان مخصص
+- تطوير مكونات UI فريدة
+- استخدام CSS Grid/Flexbox بحرية
+- تطبيق animations مخصصة
+- تحسين الأداء بدون CSS غير مستخدم

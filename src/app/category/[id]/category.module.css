@@ -1,0 +1,107 @@
+/* Category Page Module CSS */
+
+.main {
+  background-color: var(--color-gray-100);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-gray-800);
+  margin-bottom: 2.5rem;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .productGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.productCard {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  height: 100%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.productCard:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.imageContainer {
+  position: relative;
+  height: 16rem;
+  width: 100%;
+}
+
+.noImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noImageText {
+  color: var(--color-gray-500);
+}
+
+.productInfo {
+  padding: 1rem;
+}
+
+.productName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productPrice {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.noProducts {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--color-gray-500);
+  font-size: 1.125rem;
+}
