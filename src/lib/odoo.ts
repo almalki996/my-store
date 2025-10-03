@@ -49,17 +49,17 @@ const odooJsonRpc = async (model: string, method: string, args: unknown[] = [], 
 // A specific function to get published products, wrapped in React's cache for performance
 export const getProducts = cache(async () => {
     try {
-     const products = await odooJsonRpc(
-    'product.template',
-    'search_read',
-    //  v--v   اطلب فقط المنتجات المنشورة والتي لها فئة   v--v
-    [[['public_categ_ids', '!=', false], ['is_published', '=', true]]],
-    { fields: ['id', 'name', 'list_price', 'image_1024', 'public_categ_ids'] }
-);
+        const products = await odooJsonRpc(
+            'product.template',
+            'search_read',
+            // This filter is more robust for production
+            [[['public_categ_ids', '!=', false], ['is_published', '=', true]]],
+            { fields: ['id', 'name', 'list_price', 'image_1024', 'public_categ_ids'] }
+        );
         return products;
     } catch (error) {
         console.error("Could not fetch products:", error);
-        return []; // Return an empty array on error
+        return [];
     }
 });
 
@@ -230,19 +230,16 @@ export const authenticateUser = async (email: string, password: string) => {
 
 export const createUser = async (name: string, email: string, password: string) => {
     try {
-        // Step 1: Find the 'Portal' user group ID
         const portalGroupId = await odooJsonRpc('ir.model.data', 'search_read',
             [[['module', '=', 'base'], ['name', '=', 'group_portal']]],
             { fields: ['res_id'] }
-        ) as { res_id: number }[]; // <--  التصحيح هنا
+        ) as { res_id: number }[];
 
         if (!portalGroupId || portalGroupId.length === 0) {
             throw new Error("Portal user group not found in Odoo.");
         }
-
         const groupId = portalGroupId[0].res_id;
 
-        // Step 2: Create the user
         const userId = await odooJsonRpc('res.users', 'create', [{
             name: name,
             login: email,
@@ -251,10 +248,7 @@ export const createUser = async (name: string, email: string, password: string) 
             groups_id: [[4, groupId]] 
         }]);
 
-        if (!userId) {
-            throw new Error("Failed to create user in Odoo.");
-        }
-
+        if (!userId) { throw new Error("Failed to create user in Odoo."); }
         return { success: true, userId };
 
     } catch (error) {
