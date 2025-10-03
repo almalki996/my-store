@@ -15,10 +15,15 @@ export async function POST(req: NextRequest) {
         if (result.success) {
             return NextResponse.json({ message: "تم إنشاء الحساب بنجاح" }, { status: 201 });
         } else {
-            return NextResponse.json({ message: result.error }, { status: 400 });
+            // Handle specific errors based on the code from createUser
+            if (result.error === "DUPLICATE_EMAIL") {
+                return NextResponse.json({ message: "هذا البريد الإلكتروني مسجل لدينا بالفعل." }, { status: 409 }); // 409 Conflict
+            }
+            // Generic professional error message
+            return NextResponse.json({ message: "حدث خطأ أثناء إنشاء الحساب. الرجاء المحاولة مرة أخرى." }, { status: 500 });
         }
 
-    } catch {
-        return NextResponse.json({ message: "خطأ داخلي في الخادم" }, { status: 500 });
+    } catch (error) {
+        return NextResponse.json({ message: "خطأ داخلي في الخادم." }, { status: 500 });
     }
 }

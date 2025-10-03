@@ -236,7 +236,7 @@ export const createUser = async (name: string, email: string, password: string) 
         ) as { res_id: number }[];
 
         if (!portalGroupId || portalGroupId.length === 0) {
-            throw new Error("Portal user group not found in Odoo.");
+            throw new Error("Portal user group not found.");
         }
         const groupId = portalGroupId[0].res_id;
 
@@ -248,14 +248,18 @@ export const createUser = async (name: string, email: string, password: string) 
             groups_id: [[4, groupId]] 
         }]);
 
-        if (!userId) { throw new Error("Failed to create user in Odoo."); }
+        if (!userId) { throw new Error("User creation failed."); }
         return { success: true, userId };
 
     } catch (error) {
-        console.error("Failed to create user in Odoo:", error);
-        const errorMessage = (error as any).message?.includes("already exists") 
-            ? "هذا البريد الإلكتروني مسجل مسبقًا."
-            : "فشل إنشاء المستخدم في Odoo.";
-        return { success: false, error: errorMessage };
+        console.error("Odoo user creation error:", error);
+        // Check if the error message from Odoo indicates a duplicate user
+        const errorMessage = (error as any).message || '';
+        if (errorMessage.includes('res.users_login_key') || errorMessage.includes('duplicate key value violates unique constraint')) {
+            // This is a more reliable way to detect a duplicate email
+            return { success: false, error: "DUPLICATE_EMAIL" };
+        }
+        // Generic error for other issues
+        return { success: false, error: "USER_CREATION_FAILED" };
     }
 };

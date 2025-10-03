@@ -21,18 +21,18 @@ export default function RegisterPage() {
         const loadingToast = toast.loading("جاري إنشاء حسابك...");
 
         try {
-            // We will create this API route in the next step
-            const response = await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, password }),
-            });
+    const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+    });
 
-            const data = await response.json();
+    const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error(data.message || 'فشل إنشاء الحساب');
-            }
+    if (!response.ok) {
+        // Use the specific message from the API
+        throw new Error(data.message || 'فشل إنشاء الحساب');
+    }
 
             toast.success("تم إنشاء حسابك بنجاح!", { id: loadingToast });
 
