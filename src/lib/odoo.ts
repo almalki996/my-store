@@ -49,12 +49,13 @@ const odooJsonRpc = async (model: string, method: string, args: unknown[] = [], 
 // A specific function to get published products, wrapped in React's cache for performance
 export const getProducts = cache(async () => {
     try {
-        const products = await odooJsonRpc(
-            'product.template',
-            'search_read',
-            [[['is_published', '=', true]]], // Fetch only products published on the website
-            { fields: ['id', 'name', 'list_price', 'image_1024'] } // Specify the fields you need
-        );
+     const products = await odooJsonRpc(
+    'product.template',
+    'search_read',
+    //  v--v   اطلب فقط المنتجات المنشورة والتي لها فئة   v--v
+    [[['public_categ_ids', '!=', false], ['is_published', '=', true]]],
+    { fields: ['id', 'name', 'list_price', 'image_1024', 'public_categ_ids'] }
+);
         return products;
     } catch (error) {
         console.error("Could not fetch products:", error);
@@ -226,28 +227,39 @@ export const authenticateUser = async (email: string, password: string) => {
     }
 };
 
+
 export const createUser = async (name: string, email: string, password: string) => {
     try {
-        // In Odoo, a user is linked to a 'partner'. We create the partner first.
-        const partnerId = await odooJsonRpc('res.partner', 'create', [{ name, email }]);
+        // Step 1: Find the 'Portal' user group ID
+        const portalGroupId = await odooJsonRpc('ir.model.data', 'search_read',
+            [[['module', '=', 'base'], ['name', '=', 'group_portal']]],
+            { fields: ['res_id'] }
+        ) as { res_id: number }[]; // <--  التصحيح هنا
 
-        if (!partnerId) {
-            throw new Error("Failed to create partner in Odoo.");
+        if (!portalGroupId || portalGroupId.length === 0) {
+            throw new Error("Portal user group not found in Odoo.");
         }
 
-        // Now create the user and link it to the partner
+        const groupId = portalGroupId[0].res_id;
+
+        // Step 2: Create the user
         const userId = await odooJsonRpc('res.users', 'create', [{
             name: name,
             login: email,
+            email: email,
             password: password,
-            partner_id: partnerId,
+            groups_id: [[4, groupId]] 
         }]);
 
+        if (!userId) {
+            throw new Error("Failed to create user in Odoo.");
+        }
+
         return { success: true, userId };
+
     } catch (error) {
         console.error("Failed to create user in Odoo:", error);
-        // Try to find a more specific error message from Odoo
-        const errorMessage = (error instanceof Error && error.message?.includes("already exists")) 
+        const errorMessage = (error as any).message?.includes("already exists") 
             ? "هذا البريد الإلكتروني مسجل مسبقًا."
             : "فشل إنشاء المستخدم في Odoo.";
         return { success: false, error: errorMessage };
