@@ -1,18 +1,40 @@
 // src/app/api/register/route.ts
 import { createUser } from "@/lib/odoo";
+import { verifyTurnstileToken } from "@/lib/turnstile";
+import { sendWelcomeEmail } from "@/lib/brevo";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     try {
-        const { name, email, password } = await req.json();
+        const { name, email, password, turnstileToken } = await req.json();
 
         if (!name || !email || !password) {
             return NextResponse.json({ message: "الرجاء ملء جميع الحقول" }, { status: 400 });
         }
 
+        // التحقق من Turnstile Token
+        if (turnstileToken) {
+            const isValidToken = await verifyTurnstileToken(turnstileToken);
+            if (!isValidToken) {
+                return NextResponse.json({ 
+                    message: "فشل في التحقق من أنك لست روبوت. يرجى المحاولة مرة أخرى." 
+                }, { status: 400 });
+            }
+        } else if (process.env.NODE_ENV === 'production') {
+            // في الإنتاج، Turnstile مطلوب
+            return NextResponse.json({ 
+                message: "يرجى التحقق من أنك لست روبوت" 
+            }, { status: 400 });
+        }
+
         const result = await createUser(name, email, password);
 
         if (result.success) {
+            // إرسال إيميل ترحيب (لا ننتظر النتيجة لعدم إبطاء التسجيل)
+            sendWelcomeEmail(email, name).catch(error => {
+                console.error('Failed to send welcome email:', error);
+            });
+            
             return NextResponse.json({ message: "تم إنشاء الحساب بنجاح" }, { status: 201 });
         } else {
 

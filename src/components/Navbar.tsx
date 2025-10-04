@@ -121,7 +121,7 @@ export default function Navbar() {
                         {session?.user ? (
                             <>
                                 <span className={styles.welcomeText}>مرحباً، {session.user.name}</span>
-                                <button onClick={() => signOut()} className={styles.signOutBtn} aria-label="تسجيل الخروج">خروج</button>
+                                <button onClick={() => signOut({ callbackUrl: '/' })} className={styles.signOutBtn} aria-label="تسجيل الخروج">خروج</button>
                             </>
                         ) : (
                             <>
@@ -197,7 +197,7 @@ export default function Navbar() {
                                 <span className={styles.mobileWelcomeText}>مرحباً، {session.user.name}</span>
                                 <button 
                                     onClick={() => {
-                                        signOut();
+                                        signOut({ callbackUrl: '/' });
                                         setIsMenuOpen(false);
                                     }} 
                                     className={styles.mobileSignOutBtn}
