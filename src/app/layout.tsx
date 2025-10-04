@@ -36,13 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
                     }}
                 />
             </head>
-            <body className={`${cairo.className} ${styles.body}`}>
+            <body className={`${cairo.className} ${styles.body}`} suppressHydrationWarning>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
-                            document.body.classList.add('preload');
                             window.addEventListener('load', function() {
-                                document.body.classList.remove('preload');
+                                document.body.classList.add('loaded');
                             });
                         `,
                     }}
