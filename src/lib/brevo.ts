@@ -27,7 +27,7 @@ export async function sendEmail(emailData: EmailData): Promise<boolean> {
     
     // المرسل
     sendSmtpEmail.sender = {
-      email: 'noreply@store.sofoit.uno',
+      email: 'noreply@sofoit.uno',
       name: 'متجر SofoIT'
     };
     
