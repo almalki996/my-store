@@ -21,11 +21,37 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
     return (
         //  v--v   أضف الخاصية هنا   v--v
         <html lang="ar" dir="rtl" suppressHydrationWarning> 
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            try {
+                                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                                    document.documentElement.setAttribute('data-theme', 'dark')
+                                } else {
+                                    document.documentElement.setAttribute('data-theme', 'light')
+                                }
+                            } catch (_) {}
+                        `,
+                    }}
+                />
+            </head>
             <body className={`${cairo.className} ${styles.body}`}>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            document.body.classList.add('preload');
+                            window.addEventListener('load', function() {
+                                document.body.classList.remove('preload');
+                            });
+                        `,
+                    }}
+                />
                 <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
+                    attribute="data-theme"
+                    defaultTheme="light"
                     enableSystem
+                    disableTransitionOnChange={false}
                 >
                     <AuthProvider>
                         <Toaster position="bottom-center" />

@@ -1,5 +1,3 @@
-// src/app/category/[id]/page.tsx
-
 import { getProductsByCategory } from "@/lib/odoo";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +8,8 @@ type Props = {
 };
 
 export default async function CategoryPage({ params }: Props) {
-  const categoryId = parseInt(params.id, 10);
+  const resolvedParams = await params;
+  const categoryId = parseInt(resolvedParams.id, 10);
   const products = await getProductsByCategory(categoryId) as Array<{ id: number; name: string; list_price: number; image_1024?: string }>;
 
   // Optional: You could also fetch category details to display the name
@@ -32,8 +31,8 @@ export default async function CategoryPage({ params }: Props) {
                     <Image
                       src={`data:image/jpeg;base64,${product.image_1024}`}
                       alt={product.name}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      style={{ objectFit: 'cover' }}
                     />
                   ) : (
                     <div className={styles.noImagePlaceholder}>

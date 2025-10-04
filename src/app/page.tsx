@@ -1,8 +1,8 @@
-// src/app/page.tsx
 import { getProducts } from "@/lib/odoo";
 import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
+import CategoriesSection from "@/components/CategoriesSection";
 import styles from './page.module.css';
 
 export default async function HomePage() {
@@ -11,6 +11,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
+      <CategoriesSection />
       <main id="products" className={styles.main}>
         <div className={styles.container}>
           <h2 className={styles.title}>
@@ -26,8 +27,8 @@ export default async function HomePage() {
                       <Image
                         src={`data:image/jpeg;base64,${product.image_1024}`}
                         alt={product.name}
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        style={{ objectFit: 'cover' }}
                       />
                     ) : (
                       <div className={styles.placeholderImage}>

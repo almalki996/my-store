@@ -1,4 +1,3 @@
-// src/app/product/[id]/ProductDetailsClient.tsx
 "use client";
 
 import { useCartStore } from "@/stores/cartStore";
@@ -29,8 +28,8 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
                     <Image
                         src={`data:image/jpeg;base64,${product.image_1920}`}
                         alt={product.name}
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        style={{ objectFit: 'contain' }}
                     />
                 ) : (
                     <div className={styles.noImagePlaceholder}>

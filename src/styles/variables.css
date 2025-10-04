@@ -4,48 +4,126 @@
 */
 
 :root {
-  /* الألوان الأساسية للموقع */
-  --brand-blue: #007BFF;
-  --brand-yellow: #FFC107;
-  --brand-green: #8BC34A;
-  --brand-red: #DC3545;
+  /* نظام الألوان المحدث والمتطور */
+  
+  /* الألوان الأساسية */
+  --color-primary: #4F46E5;
+  --color-primary-light: #A5B4FC;
+  --color-primary-dark: #3730A3;
+  --color-secondary: #10B981;
+  --color-accent: #F59E0B;
+  
+  /* ألوان الحالة */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
   
   /* ألوان النص */
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
-  --text-light: #9CA3AF;
+  --color-text: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
   
   /* ألوان الخلفية */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F3F4F6;
-  --bg-dark: #1F2937;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F9FAFB;
+  --color-background-tertiary: #F3F4F6;
   
   /* ألوان الحدود */
-  --border-light: #E5E7EB;
-  --border-medium: #D1D5DB;
-  --border-dark: #9CA3AF;
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+  --color-border-dark: #D1D5DB;
   
-  /* الظلال */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  /* تدرجات الرمادي */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
+  
+  /* ألوان قديمة للتوافق */
+  --brand-blue: var(--color-primary);
+  --brand-yellow: var(--color-warning);
+  --brand-green: var(--color-success);
+  --brand-red: var(--color-error);
+  
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-text-secondary);
+  --text-light: var(--color-text-muted);
+  
+  --bg-primary: var(--color-background);
+  --bg-secondary: var(--color-background-secondary);
+  --bg-dark: var(--color-gray-800);
+  
+  --border-light: var(--color-border-light);
+  --border-medium: var(--color-border);
+  --border-dark: var(--color-border-dark);
+  
+  /* الظلال المحدثة */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.025);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
   
-  /* المسافات */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
+  /* المسافات المحدثة */
+  --spacing-0: 0;
+  --spacing-px: 1px;
+  --spacing-0_5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1_5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2_5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-3_5: 0.875rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
   
-  /* نصف الأقطار */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-full: 9999px;
+  /* متغيرات قديمة للتوافق */
+  --spacing-xs: var(--spacing-1);
+  --spacing-sm: var(--spacing-2);
+  --spacing-md: var(--spacing-4);
+  --spacing-lg: var(--spacing-6);
+  --spacing-xl: var(--spacing-8);
+  --spacing-2xl: var(--spacing-12);
   
-  /* الخطوط */
+  /* نصف الأقطار المحدثة */
+  --border-radius-none: 0;
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-2xl: 1rem;
+  --border-radius-3xl: 1.5rem;
+  --border-radius-full: 9999px;
+  
+  /* متغيرات قديمة للتوافق */
+  --radius-sm: var(--border-radius-sm);
+  --radius-md: var(--border-radius-md);
+  --radius-lg: var(--border-radius-lg);
+  --radius-xl: var(--border-radius-xl);
+  --radius-full: var(--border-radius-full);
+  
+  /* أحجام الخطوط المحدثة */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -54,28 +132,91 @@
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-size-9xl: 8rem;
   
   /* أوزان الخطوط */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* متغيرات الانتقال والتأثيرات */
+  --transition-none: none;
+  --transition-all: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-colors: color 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-opacity: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-shadow: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-transform: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* منحنيات الانتقال */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* الشفافية */
+  --opacity-0: 0;
+  --opacity-5: 0.05;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-25: 0.25;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-75: 0.75;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-95: 0.95;
+  --opacity-100: 1;
 }
 
-/* الوضع الليلي */
-:root.dark {
-  --text-primary: #F9FAFB;
-  --text-secondary: #D1D5DB;
-  --text-light: #9CA3AF;
+/* الوضع الليلي المحدث */
+:root[data-theme="dark"] {
+  /* ألوان النص في الوضع الليلي */
+  --color-text: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
   
-  --bg-primary: #1F2937;
-  --bg-secondary: #374151;
-  --bg-dark: #111827;
+  /* ألوان الخلفية في الوضع الليلي */
+  --color-background: #0F172A;
+  --color-background-secondary: #1E293B;
+  --color-background-tertiary: #334155;
   
-  --border-light: #374151;
-  --border-medium: #4B5563;
-  --border-dark: #6B7280;
+  /* ألوان الحدود في الوضع الليلي */
+  --color-border: #334155;
+  --color-border-light: #475569;
+  --color-border-dark: #64748B;
+  
+  /* ألوان محسنة للثيم الداكن */
+  --color-primary-light: #8B5CF6;
+  --color-gray-50: #1E293B;
+  --color-gray-100: #334155;
+  --color-gray-800: #0F172A;
+  --color-gray-900: #020617;
+  
+  /* متغيرات قديمة للتوافق */
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-text-secondary);
+  --text-light: var(--color-text-muted);
+  
+  --bg-primary: var(--color-background);
+  --bg-secondary: var(--color-background-secondary);
+  --bg-dark: var(--color-background-tertiary);
+  
+  --border-light: var(--color-border-light);
+  --border-medium: var(--color-border);
+  --border-dark: var(--color-border-dark);
 }
 
 /* استراحة إضافية للطباعة */

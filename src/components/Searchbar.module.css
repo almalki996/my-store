@@ -1,35 +1,84 @@
-/* Searchbar Styles */
+/* Enhanced Searchbar Styles */
 .searchForm {
-  position: relative;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
 }
 
 .searchInput {
-  border: 1px solid #d1d5db;
-  border-radius: 9999px;
-  padding: 0.5rem 1rem;
-  width: 12rem;
-  font-size: 0.875rem;
-  outline: none;
-  transition: all 0.3s;
+    width: 100%;
+    padding: 0.75rem 3rem 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    font-size: 0.875rem;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    outline: none;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.searchInput::placeholder {
+    color: var(--color-text-muted);
+    font-style: italic;
 }
 
 .searchInput:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+    transform: translateY(-1px);
 }
 
 .searchBtn {
-  position: absolute;
-  right: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #6b7280;
-  background: none;
-  border: none;
-  cursor: pointer;
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBtn:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.searchBtn:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 .searchIcon {
-  height: 1.25rem;
-  width: 1.25rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+    .searchForm {
+        max-width: none;
+    }
+    
+    .searchInput {
+        font-size: 1rem; /* Prevent zoom on iOS */
+    }
+}
+
+/* Dark mode support */
+:global([data-theme="dark"]) .searchInput {
+    background-color: var(--color-background);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+:global([data-theme="dark"]) .searchInput::placeholder {
+    color: var(--color-text-muted);
 }

@@ -27,7 +27,7 @@ export default async function SearchPage({ searchParams }: Props) {
             products.map((product: { id: number; name: string; list_price: number; image_1024?: string }) => (
               <Link href={`/product/${product.id}`} key={product.id} className={styles.productCard}>
                 <div className={styles.imageContainer}>
-                  {product.image_1024 ? <Image src={`data:image/jpeg;base64,${product.image_1024}`} alt={product.name} layout="fill" objectFit="cover"/> : <div className={styles.placeholderImage}><span className={styles.placeholderText}>No Image</span></div>}
+                  {product.image_1024 ? <Image src={`data:image/jpeg;base64,${product.image_1024}`} alt={product.name} fill style={{ objectFit: 'cover' }}/> : <div className={styles.placeholderImage}><span className={styles.placeholderText}>No Image</span></div>}
                 </div>
                 <div className={styles.productInfo}>
                   <h3 className={styles.productName}>{product.name}</h3>

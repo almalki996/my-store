@@ -11,63 +11,229 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-md);
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, 
+    var(--color-background) 0%, 
+    var(--color-gray-50) 50%, 
+    var(--color-background) 100%);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-full);
   color: var(--color-text);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
+              0 4px 16px rgba(0, 0, 0, 0.05),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .toggleBtn:hover {
-  background-color: var(--color-gray-100);
-  border-color: var(--color-primary);
+  background: linear-gradient(135deg, 
+    #FEF3C7 0%, 
+    #FCD34D 50%, 
+    #F59E0B 100%);
+  border-color: #F59E0B;
+  color: #92400E;
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3), 
+              0 8px 32px rgba(245, 158, 11, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .toggleBtn:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: 3px solid rgba(245, 158, 11, 0.6);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+}
+
+.iconContainer {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 .icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: absolute;
+  top: 0;
+  left: 0;
+  stroke-width: 2.5;
 }
 
 .sunIcon {
   opacity: 1;
   transform: rotate(0deg) scale(1);
+  color: #F59E0B;
 }
 
 .moonIcon {
   opacity: 0;
-  transform: rotate(180deg) scale(0.8);
+  transform: rotate(180deg) scale(0.6);
+  color: #6366F1;
+}
+
+.sunIcon.active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1.1);
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4));
+}
+
+.moonIcon.active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1.1);
+  filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.4));
+}
+
+.sunIcon:not(.active) {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.7);
+}
+
+.moonIcon:not(.active) {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.7);
 }
 
 /* Dark theme styles */
-:global([data-theme="dark"]) .sunIcon {
-  opacity: 0;
-  transform: rotate(-180deg) scale(0.8);
-}
-
-:global([data-theme="dark"]) .moonIcon {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
 :global([data-theme="dark"]) .toggleBtn {
-  background-color: var(--color-background);
+  background: linear-gradient(135deg, 
+    var(--color-background) 0%, 
+    var(--color-background-secondary) 50%, 
+    var(--color-background) 100%);
   border-color: var(--color-border);
   color: var(--color-text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 
+              0 4px 16px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 :global([data-theme="dark"]) .toggleBtn:hover {
-  background-color: var(--color-gray-800);
-  border-color: var(--color-primary);
+  background: linear-gradient(135deg, 
+    #1E1B4B 0%, 
+    #312E81 50%, 
+    #6366F1 100%);
+  border-color: #6366F1;
+  color: #E0E7FF;
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4), 
+              0 8px 32px rgba(99, 102, 241, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+:global([data-theme="dark"]) .toggleBtn:focus {
+  outline: 3px solid rgba(99, 102, 241, 0.6);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+:global([data-theme="dark"]) .sunIcon {
+  color: #FCD34D;
+}
+
+:global([data-theme="dark"]) .moonIcon {
+  color: #818CF8;
+}
+
+.toggleBtn.dark {
+  background: linear-gradient(135deg, var(--color-background), var(--color-background-secondary));
+}
+
+.toggleBtn.light {
+  background: linear-gradient(135deg, var(--color-background), var(--color-gray-50));
+}
+
+/* إضافة تأثير نبضة خفيفة */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
+                0 4px 16px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 
+                0 8px 24px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* تأثير متوهج للأيقونة النشطة */
+.icon.active {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  to {
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+/* تحسين placeholder */
+.placeholder {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--color-gray-200), var(--color-gray-300));
+  border-radius: var(--border-radius-full);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* حلقة التأثير النشط */
+.activeRing {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: var(--border-radius-full);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+}
+
+.activeRingLight {
+  background: conic-gradient(from 0deg, 
+    #FEF3C7, #FCD34D, #F59E0B, #D97706, 
+    #92400E, #78350F, #FEF3C7);
+  opacity: 0.3;
+}
+
+.activeRingDark {
+  background: conic-gradient(from 0deg, 
+    #1E1B4B, #312E81, #4338CA, #6366F1, 
+    #818CF8, #A5B4FC, #1E1B4B);
+  opacity: 0.4;
+}
+
+.toggleBtn:hover .activeRing {
+  opacity: 1;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* تحسين تأثير النقر */
+.toggleBtn:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* تحسين للحالة النشطة */
+.toggleBtn:hover .icon.active {
+  animation: none;
+  filter: drop-shadow(0 0 12px currentColor);
+  transform: rotate(0deg) scale(1.2);
 }

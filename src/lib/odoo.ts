@@ -86,7 +86,7 @@ export const getCategories = cache(async () => {
             'product.public.category',
             'search_read',
             [], // Fetch all categories
-            { fields: ['id', 'name'] }
+            { fields: ['id', 'name', 'image_1920', 'image_1024', 'image_512', 'image_256', 'image_128'] }
         );
         return categories;
     } catch (error) {
